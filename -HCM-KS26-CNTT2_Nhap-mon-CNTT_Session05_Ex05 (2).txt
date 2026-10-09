@@ -1,0 +1,27 @@
+Bài 5 : Thiết kế quy trình tự động quản lý tệp bằng Terminal
+
+### 1. Sơ đồ luồng IPO (Input – Process – Output)
+
+* **Input (Đầu vào):**
+* Tất cả các tập tin/thư mục hiện có trong thư mục `Downloads`.
+* **Process (Xử lý):**
+* Quét và kiểm tra định dạng đuôi file.
+* Phân loại: Dấu hiệu `.png`/`.jpg` (hình ảnh), `.py` (mã nguồn), `.tmp` (tập tin tạm).
+* Kiểm tra điều kiện đảm bảo đối tượng xử lý là **file** (không phải thư mục).
+* **Output (Đầu ra):**
+* Các file `.png`, `.jpg` được di chuyển vào thư mục `media/`.
+* Các file `.py` được di chuyển vào thư mục `scripts/`.
+* Các file `.tmp` bị xóa hoàn toàn để giải phóng dung lượng máy chủ.
+
+### 2. Danh sách câu lệnh kịch bản (Terminal / Bash)
+# 1. Khởi tạo các thư mục đích nếu chưa tồn tại
+mkdir -p media scripts
+
+# 2. Gom file ảnh (.png, .jpg) vào media/
+mv *.png *.jpg media/ 2>/dev/null
+
+# 3. Gom file code (.py) vào scripts/
+mv *.py scripts/ 2>/dev/null
+
+# 4. Xóa các file tạm (.tmp)
+rm *.tmp 2>/dev/null
